@@ -18,70 +18,77 @@ console.log(myfun("mercoledi","sabato"))
   Scrivi una funzione che torni un array di 10 elementi; ognuno di essi deve essere un valore random compreso tra 0 e 100 (incluso).
 */
 
-let arrayF=function(array){
-  let newarray=[]
-  newarray.push(Math.floor(Math.random()*100))
-  newarray.push(Math.floor(Math.random()*100))
-  newarray.push(Math.floor(Math.random()*100))
-  newarray.push(Math.floor(Math.random()*100))
-  newarray.push(Math.floor(Math.random()*100))
-  newarray.push(Math.floor(Math.random()*100))
-    newarray.push(Math.floor(Math.random()*100))
-    newarray.push(Math.floor(Math.random()*100))
-    newarray.push(Math.floor(Math.random()*100))
-    newarray.push(Math.floor(Math.random()*100))
-    return newarray
-  
-  }
-  console.log(arrayF())
+let arrayTenElement=function(){
+let arrayten=[]
+for(let i=0;i<10;i++){
+  arrayten.push(Math.floor(Math.random(i)*101))
+}  
+return arrayten
+}
+console.log(arrayTenElement())
 
 /* ESERCIZIO 3 (filter)
   Scrivi una funzione per ricavare solamente i valori PARI da un array composto da soli valori numerici
 */
-let number=[2,5,15,48,54,62,3,79]
-const numberpari=number.filter((n)=>{
-  if(n%2===0){
-    return true
-  }
-  else{
-    return false
-  }
-})
-
-console.log(numberpari)
+let onlyevennumber=function(arr){
+  let arraynumbers=[]
+  arraynumbers=arr.filter((number)=>{
+     if(number%2===0){
+      return true
+     }
+     else{
+      return false
+     }
+     
+  })
+  return arraynumbers
+}
+  console.log(onlyevennumber([1,2,3,4,5,6,7,8,9]))
+  
 
 
 /* ESERCIZIO 4 (forEach)
   Scrivi una funzione per sommare i numeri contenuti in un array
 */
-const arraynumeri = [1, 2, 3, 4];
-let sum = 0;
 
-arraynumeri.forEach((numeri)=>{
-  sum+=numeri
-})
+const sumArrayNumber=function(arr){
+  let total=0
+  arr.forEach((numero) => {
+    total+=numero
+    
+  })
+  return total
+  }
 
 
-console.log(sum);
-
-
-
+console.log(sumArrayNumber([5,10,15]))
 
 
 /* ESERCIZIO 5 (reduce)
   Scrivi una funzione per sommare i numeri contenuti in un array
 */
-let total=arraynumeri.reduce((tot,numbersss)=>{
-  return tot+numbersss
-})
-console.log(total)
 
+const sumArrayReduce=function(arr){
+  let sumAndValue=arr.reduce((tot,number)=>tot+number)
+  return sumAndValue
+}
+
+console.log(sumArrayReduce([5,10,15]))
 
 
 
 /* ESERCIZIO 6 (map)
   Scrivi una funzione che, dato un array di soli numeri e un numero n come parametri, ritorni un secondo array con tutti i valori del precedente incrementati di n
 */
+const arrayOnlyNumber=function(arr,n){
+ 
+let newArray=arr.map((number)=>{
+  return number+n
+})
+return newArray
+}
+
+console.log(arrayOnlyNumber([5,10,15],20))
 
 
 
@@ -92,10 +99,36 @@ console.log(total)
   Scrivi una funzione che, dato un array di stringhe, ritorni un nuovo array contenente le lunghezze delle rispettive stringhe dell'array di partenza
   es.: ["EPICODE", "is", "great"] => [7, 2, 5]
 */
+const stringArray=function(arr){
+  let newArray=arr.map((element)=>{
+    return element.length
+  })
+  return newArray
+
+}
+console.log(stringArray(["ciao","è","lunedi"]))
+
+
+
+
 
 /* ESERCIZIO 8 (forEach o for)
   Scrivi una funzione per creare un array contenente tutti i valori DISPARI da 1 a 99.
 */
+const array=function(){
+  let arrayC=[]
+  for(let i=1;i<100;i++){
+    if(i%2!==0){
+      arrayC.push(i)
+    }
+  }
+  return arrayC
+}
+console.log(array())
+
+
+
+
 
 /* Questo array di film verrà usato negli esercizi a seguire. Non modificarlo e scorri oltre per riprendere gli esercizi :) */
 const movies = [
@@ -216,11 +249,31 @@ const movies = [
 /* ESERCIZIO 9 (forEach)
   Scrivi una funzione per trovare il film più vecchio nell'array fornito.
 */
+const oldestFilm=function(){
+  let old=movies[0]
+  movies.forEach((movie)=>{
+    if(parseInt(movie.Year)<parseInt(old.Year)){
+      old=movie
+    }
+
+  })
+  return old
+}
+
+console.log(oldestFilm())
 
 
 /* ESERCIZIO 10
   Scrivi una funzione per ottenere il numero di film contenuti nell'array fornito.
 */
+
+const numerOfMovie=function(){
+  let x=movies.length
+
+  
+  return x
+}
+console.log(numerOfMovie())
 
 
 
@@ -228,14 +281,47 @@ const movies = [
 /* ESERCIZIO 11 (map)
   Scrivi una funzione per creare un array con solamente i titoli dei film contenuti nell'array fornito.
 */
+const movieTitle=function(){
+  let title=movies.map((movie)=>{
+    return movie.Title
+  })
+  return title
+}
+console.log(movieTitle())
+
+
 
 /* ESERCIZIO 12 (filter)
   Scrivi una funzione per ottenere dall'array fornito solamente i film usciti nel millennio corrente.
 */
+const milleniumFilm=function(){
+  let x=movies.filter((movie)=>{
+    if(movie.Year>2000){
+      return true
+    }
+    else{
+      return false
+    }
+  })
+  return x
+}
+console.log(milleniumFilm())
+
+
+
 
 /* ESERCIZIO 13 (reduce)
   Scrivi una funzione per calcolare la somma di tutti gli anni in cui sono stati prodotti i film contenuti nell'array fornito.
 */
+const sumYear=function(){
+   let sum=movies.reduce((tot,accumulatore)=>{return tot+parseInt(accumulatore.Year)},0)
+   return sum
+}
+console.log(sumYear())
+
+
+
+
 
 /* ESERCIZIO 14 (find)
   Scrivi una funzione per ottenere dall'array fornito uno specifico film (la funzione riceve un imdbID come parametro).
